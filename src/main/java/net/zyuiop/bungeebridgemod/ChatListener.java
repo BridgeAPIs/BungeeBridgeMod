@@ -58,9 +58,11 @@ public class ChatListener implements Listener, PubSubConsumer, IChatListener {
             }
         }
 
-        if (plugin.getPermissionsBridge().getApi().getUser(player.getUniqueId()).hasPermission("chatrestrict.ignore")) {
-            return;
-        }
+        try {
+            if (plugin.getPermissionsBridge().getApi().getUser(player.getUniqueId()).hasPermission("chatrestrict.ignore")) {
+                return;
+            }
+        } catch (NullPointerException ignored) {}
 
         MessageData last = lastMessages.get(((ProxiedPlayer) connection).getUniqueId());
         if (last != null) {
