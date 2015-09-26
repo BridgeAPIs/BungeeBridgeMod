@@ -13,9 +13,10 @@ import net.zyuiop.bungeebridgemod.moderation.ModMessageHandler;
  */
 public class BungeeBridgeMod extends Plugin {
     private final ChatListener chatListener = new ChatListener(BungeeBridge.getInstance());
-    private final BungeeBridge instance = BungeeBridge.getInstance();
+    private BungeeBridge instance;
 
     public void onEnable() {
+        instance = BungeeBridge.getInstance();
         getProxy().getPluginManager().registerCommand(this, new CommandBan(this));
         getProxy().getPluginManager().registerCommand(this, new CommandBTP(this));
         getProxy().getPluginManager().registerCommand(this, new CommandKick(this));
